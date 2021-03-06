@@ -1,9 +1,9 @@
 # Overzicht
 
 {% hint style="info" %}
-The Road to Node versie: 2.0.1
+The Road to Node version: 2.0.1
 
-Hulp nodig? Check [Telegram](https://t.me/theroadtonode).
+Need help? Check [Telegram](https://t.me/theroadtonode).
 {% endhint %}
 
 Op deze site vind je alle benodigdheden om zelf een Bitcoin node op te zetten. Veel plezier!
