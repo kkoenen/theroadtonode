@@ -29,7 +29,7 @@ De tool zal nu in de achtergrond draaien op poortnummer `:25441`. Open je browse
 Als je een firewall gebruik is het wel van belang dat je de bijbehorende port openzet.
 
 ```bash
-sudo ufw allow 25441
+sudo ufw allow 25441 comment "Port voor Specter"
 ```
 
 ## Automatiseren
@@ -44,16 +44,16 @@ sudo nano /etc/systemd/system/specter.service
 
 Plak er het volgende in.
 
-```bash
+```toml
 [Unit]
 Description=Specter
-Wants=bitcoind.service
+Requires=bitcoind.service
 After=bitcoind.service
 
 [Service]
 ExecStart=python3 -m cryptoadvance.specter server --host 0.0.0.0 --port 25441
-User=pi
-Group=pi
+User=ubuntu
+Group=ubuntu
 Type=simple
 Restart=on-failure
 TimeoutSec=120

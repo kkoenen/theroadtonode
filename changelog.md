@@ -1,5 +1,51 @@
 # Changelog
 
+## 3.1.2 - 2022 / februari / 04
+
+### Toevoegingen
+
+* Updaten van [Electrs](https://docs.theroadtonode.com/bitcoin-core-extensies/electrs) \(Bitcoin Core Extensies\)
+
+## 3.1.1 - 2022 / februari / 04
+
+### Aanpassingen
+
+* Breaking changes toegevoegd aan [Thunderhub v0.13.0+](https://docs.theroadtonode.com/lightning-extensies/thunderhub) \(Lightning Extensies\) in verband met de port
+* Tekst van de homepage en mempool.space aangepast
+* Cleanup van oude meuk
+
+## 3.1.0 - 2022 / januari / 31
+
+### Toevoegingen
+
+* [Mempool.space](https://docs.theroadtonode.com/bitcoin-core-extensies/mempool.space) \(Bitcoin Core Extensies\)
+
+## 3.0.0 - 2022 / januari / 23 - Breaking changes
+
+### Aanpassingen
+
+* OS aangepast van 32-bit Raspberry OS naar 64-bit Ubuntu met [dank aan Thomas](https://github.com/0xthomas/succotash)
+* User door heel de gids aangepast van `pi` naar `ubuntu`
+* Wallet hoofdstuk anders ingedeeld met dank aan Dirk
+* Github opgeruimd in verband met vertalingen
+* Faraday, Loop en Pool losgetrokken van Lightning Terminal
+* Lightning Terminal maakt enkel gebruik van remote tools in plaats van internal tools
+
+### Toevoegingen
+
+* [Electrs](https://docs.theroadtonode.com/bitcoin-core-extensies/electrs) \(Bitcoin Core Extensies\)
+
+### Verwijderd
+
+* Dynamic DNS hoofdstuk
+* LND Admin hoofdstuk
+
+## 2.5.0 - 2021 / juni / 06
+
+### Verbeteringen
+
+* Updaten van Lightning Terminal
+
 ## 2.4.1 - 2021 / juni / 11
 
 ### Verbeteringen
@@ -166,7 +212,7 @@
 ### Toevoegingen
 
 * Logo
-* [Automatisering](https://docs.theroadtonode.com/bitcoin-core/automatisering) voor bitcoind
+* [Automatiseren](https://docs.theroadtonode.com/bitcoin-core/automatiseren) voor bitcoind
 * Het [Lightning \(LND\)](https://docs.theroadtonode.com/lightning) hoofdstuk
 * [Ride The Lightning](https://docs.theroadtonode.com/lightning-extensies/ride-the-lightning) onderdeel \(Lightning extensies\)
 

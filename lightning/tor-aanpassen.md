@@ -7,7 +7,7 @@ Tijd: 5 minuten
 Tor heeft een paar aanpassingen nodig zodat jij van buitenaf met LND kan communiceren. Op deze manier kun je een mobiele wallet aan je Lightning node koppelen en overal gebruiken.
 
 {% hint style="warning" %}
-Let wel op. Zodra iemand jouw macaroon bestanden in handen krijgt, zijn je funds niet meer veilig. Je kunt het tor gedeelte ook over slaan en enkel Lightning gebruiken wanneer je op hetzelfde netwerk zit als je node.
+Let wel op. Zodra iemand jouw macaroon bestanden in handen krijgt, zijn je funds niet meer veilig. Je kunt het tor gedeelte ook over slaan en enkel Lightning gebruiken wanneer je op hetzelfde netwerk zit als je node. Of natuurlijk gebruik maakt van DDNS.
 {% endhint %}
 
 Open torrc.
@@ -18,7 +18,7 @@ sudo nano /etc/tor/torrc
 
 In het torrc bestand zijn we [eerder geweest](https://docs.theroadtonode.com/bitcoin-core/tor-aanpassen). Voeg de volgende regels toe aan hetgeen dat er al staat.
 
-```text
+```bash
 SOCKSPort 9050
 
 HiddenServiceDir /var/lib/tor/lightning/rest

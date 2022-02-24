@@ -4,6 +4,8 @@
 Tijd: 1.5 uur
 {% endhint %}
 
+Zorg voordat je van start gaat dat je Pi up-to-date is met `sudo apt update` en `sudo apt upgrade -y`.
+
 Ga naar de applicatie directory.
 
 ```bash
@@ -18,14 +20,14 @@ git fetch --all
 
 Toon de laatste versie/tag/release.
 
-```text
+```bash
 git describe --tags `git rev-list --tags --max-count=1`
 ```
 
 Haal de wijzigingen op van de laatste versie.
 
 ```bash
-git checkout <OUTPUT VAN DE VORIGE STAP> #voorbeeld: v0.21.1
+git checkout -f <OUTPUT VAN DE VORIGE STAP> #voorbeeld: v22.0
 ```
 
 Build bitcoin core opnieuw op basis van de zojuist uitgecheckte versie van de broncode. Door de toevoeging van `-j $(nproc)` worden alle cores gebruikt van de CPU en zou de build sneller verlopen dan zonder deze toevoeging.
@@ -36,14 +38,7 @@ make -j $(nproc)
 
 De build zal met ongeveer een uur klaar zijn. Mooi moment voor een biertje of kopje koffie!
 
-Stop de LND service en andere services die afhankelijk zijn van Bitcoin zoals de btc-rpc-explorer en Electrum Personal Server of Electrum X mocht je die geïnstalleerd hebben.
-
-```bash
-sudo systemctl stop lnd
-sudo systemctl stop rtl
-sudo systemctl stop btc-rpc-explorer
-sudo systemctl stop eps
-```
+Stop services die afhankelijk zijn van Bitcoin Core, zoals btc-rpc-explorer, LND of Electrum. Je weet zelf het best welke je hebt draaien. Uit ervaring blijkt dat het niet uitzetten van de services die van Core afhankelijk zijn, niet echt uitmaakt. De services zullen tijdens de update van Core tijdelijk geen data van ontvangen, waarna het weer door gaat zodra Core weer aan staat.
 
 Stop de bitcoind service.
 
@@ -57,16 +52,10 @@ Installeer nu de software. Dit duurt maximaal 5 minuten.
 sudo make install
 ```
 
-Start de service bitcoin. De service zal vrij snel gestart zijn maar mogelijk moeten de blockchain n
+Start de service bitcoin. De service zal vrij snel gestart zijn maar de blockchain moet mogelijk nog een aantal blocks downloaden, afhankelijk van hoe lang de service gestopt was.
 
 ```bash
 sudo systemctl start bitcoind
-```
-
-Start de LND \(vergeet deze niet te unlocken\) en andere services. LND unlocken zal pas kunnen nadat de blockchain van bitcoin weer synchroon is na de start. Controleer met `tail -f -n 200 .bitcoin/debug.log` hoe ver deze is. Services start je weer op deze manier:
-
-```bash
-sudo systemctl start lnd
 ```
 
 Check de huidige versie van bitcoin core.
@@ -75,7 +64,10 @@ Check de huidige versie van bitcoin core.
 bitcoin-cli --version
 ```
 
-De output zal lijken op `Bitcoin Core RPC client v0.21.1`
+De output zal lijken op `Bitcoin Core RPC client v22.0` en Core is nu bijgewerkt!
 
-Bitcoin core is nu bijgewerkt!
+Start de andere services die je eventueel hebt uitgezet. Let wel op dat als je LND opstart, dat het unlocken van LND pas kan nadat de blockchain van bitcoin weer gesynchroniseerd is. Controleer met `tail -f -n 200 .bitcoin/debug.log` hoe ver deze is. Services start je op deze manier:
 
+```bash
+sudo systemctl start lnd
+```

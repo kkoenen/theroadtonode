@@ -31,7 +31,7 @@ sudo pip3 install plyvel
 Clone de broncode voor Electrum X.
 
 ```bash
-git clone https://github.com/spesmilo/electrumx.git
+git clone https://github.com/spesmilo/electrumx
 ```
 
 Navigeer de zojuist geclonede map in.
@@ -91,10 +91,10 @@ NET=mainnet
 COIN=Bitcoin
 CACHE_MB=500
 DB_ENGINE=leveldb
-DB_DIRECTORY=/home/pi/.electrumx/db
+DB_DIRECTORY=/home/ubuntu/.electrumx/db
 DAEMON_URL=http://USERNAME:PASSWORD@127.0.0.1
-SSL_CERTFILE=/home/pi/.electrumx/server.crt
-SSL_KEYFILE=/home/pi/.electrumx/server.key
+SSL_CERTFILE=/home/ubuntu/.electrumx/server.crt
+SSL_KEYFILE=/home/ubuntu/.electrumx/server.key
 SERVICES=tcp://:50001,ssl://:50002,wss://:50004,rpc://
 ```
 
@@ -102,7 +102,7 @@ Voordat je het opslaat moet je een tweetal aanpassingen maken. Vul op de plekken
 
 ## Firewall en router
 
-In principe kun je [BTC RPC Explorer](https://docs.theroadtonode.com/bitcoin-core-extensies/btc-rpc-explorer#koppeling-met-electrum-x) direct aansluiten op Electrum X. Hier hoef je geen ports voor open te zetten, aangezien lokale connectie \(dus van de Pi naar de Pi\) altijd worden toegestaan. Wil je echter gebruik maken van Electrum X in een app zoals BlueWallet, dan dien je de volgende commando's uit te voeren om twee ports open te zetten.
+In principe kun je een lokale tool zoals [BTC RPC Explorer](https://docs.theroadtonode.com/bitcoin-core-extensies/btc-rpc-explorer#koppeling-met-electrum-x) direct aansluiten op Electrum X. Hier hoef je geen ports voor open te zetten, aangezien lokale connecties \(dus van de Pi naar de Pi\) altijd worden toegestaan. Wil je echter gebruik maken van Electrum X in een app zoals BlueWallet, dan dien je de volgende commando's uit te voeren om twee ports open te zetten.
 
 ```bash
 sudo ufw allow 50001
@@ -121,14 +121,15 @@ sudo nano /etc/systemd/system/electrumx.service
 
 Zet daar de volgende tekst in.
 
-```bash
+```toml
 [Unit]
 Description=Electrum X Server
+Requires=bitcoind.service
 After=network.target
 
 [Service]
-User=pi
-EnvironmentFile=/home/pi/.electrumx/electrumx.conf
+User=ubuntu
+EnvironmentFile=/home/ubuntu/.electrumx/electrumx.conf
 ExecStart=/usr/local/bin/electrumx_server
 Restart=always
 TimeoutSec=120
@@ -220,7 +221,7 @@ git fetch --all
 
 Toon de laatste versie/tag/release.
 
-```text
+```bash
 git describe --tags `git rev-list --tags --max-count=1`
 ```
 
@@ -232,7 +233,7 @@ git checkout <OUTPUT VAN DE VORIGE STAP> # bijvoorbeeld 1.16.0
 
 Installeer de software.
 
-```text
+```bash
 sudo python3 setup.py install
 ```
 
